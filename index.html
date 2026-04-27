@@ -1,0 +1,1017 @@
+
+html_content = '''<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y-Nee Salon | Professional Beauty Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E8C1;
+            --gold-dark: #B8960C;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23111" width="1200" height="800"/><path fill="%23D4AF37" opacity="0.1" d="M0 400Q300 300 600 400T1200 400V800H0Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content h1 span {
+            color: var(--gold);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 30px;
+            color: var(--gold);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--black);
+            margin-bottom: 15px;
+        }
+
+        .section-title h2 span {
+            color: var(--gold);
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .gold-line {
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--gray);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-item i {
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--gold-light), var(--white));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--gold);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .gallery .section-title h2 {
+            color: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 300px;
+            background: linear-gradient(135deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .gallery-item i {
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover i {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: var(--gold);
+            width: 50px;
+            height: 50px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 5px;
+            color: var(--black);
+        }
+
+        .contact-item p {
+            color: #666;
+        }
+
+        .contact-item a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .map-container {
+            background: var(--gray);
+            border-radius: 15px;
+            height: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .map-container i {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .float-call {
+            background: var(--gold);
+        }
+
+        .float-whatsapp {
+            background: #25D366;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image-placeholder {
+                height: 300px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 80%;
+                justify-content: center;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Y-Nee Salon</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Enhance Your <span>Beauty</span> with Elegance</h1>
+            <p>Professional beauty services with style, care, and modern techniques</p>
+            <div class="hero-buttons">
+                <a href="tel:0710667339" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call Now
+                </a>
+                <a href="https://wa.me/94710667339" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About <span>Us</span></h2>
+                <div class="gold-line"></div>
+                <p>Discover the art of beauty at Y-Nee Salon</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Welcome to Y-Nee Salon</h3>
+                    <p>At Y-Nee Salon, we believe that beauty is not just about appearance—it's about confidence, self-expression, and feeling your best. Our team of professional stylists and beauty experts are dedicated to providing you with exceptional service using modern techniques and high-quality products.</p>
+                    <p>Whether you're looking for a fresh haircut, stunning bridal makeup, or rejuvenating skin treatments, we ensure every visit leaves you feeling pampered and beautiful.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Expert Stylists</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Premium Products</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Modern Equipment</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>100% Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-image-placeholder">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our <span>Services</span></h2>
+                <div class="gold-line"></div>
+                <p>Comprehensive beauty solutions tailored to your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Hair Cutting & Styling</h3>
+                    <p>Professional cuts and styles tailored to your face shape and personality using modern techniques.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Hair Coloring</h3>
+                    <p>From subtle highlights to bold transformations, we use premium colors for vibrant, long-lasting results.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>Bridal Dressing</h3>
+                    <p>Make your special day perfect with our exquisite bridal makeup and hairstyling services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Facial Treatments</h3>
+                    <p>Rejuvenating facials and skin treatments to give you that healthy, glowing complexion.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <h3>Skin Care</h3>
+                    <p>Comprehensive skin care solutions including cleansing, exfoliation, and nourishment treatments.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>Keratin / Rebonding</h3>
+                    <p>Smooth, frizz-free hair with our professional keratin treatments and hair rebonding services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Makeup Services</h3>
+                    <p>From everyday looks to special occasions, our makeup artists enhance your natural beauty.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Nail Care</h3>
+                    <p>Manicures, pedicures, and nail art to complete your polished look.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our <span>Gallery</span></h2>
+                <div class="gold-line"></div>
+                <p>See our transformations and beautiful work</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-overlay">
+                        <h4>Hair Styling</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-overlay">
+                        <h4>Bridal Makeup</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-overlay">
+                        <h4>Color Transformation</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-overlay">
+                        <h4>Facial Treatment</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-overlay">
+                        <h4>Keratin Treatment</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-overlay">
+                        <h4>Special Events</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact <span>Us</span></h2>
+                <div class="gold-line"></div>
+                <p>Get in touch to book your appointment</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Visit Our Salon</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>239, Thalawathugoda Road,<br>Hokandara, Sri Lanka</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p><a href="tel:0710667339">071 066 7339</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Open Daily<br>9:00 AM - 24:45 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p><a href="https://wa.me/94710667339" target="_blank">071 066 7339</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Find Us on Google Maps</h3>
+                    <p>392, Thalawathugoda Road, Hokandara</p>
+                    <a href="https://maps.google.com/?q=239+Thalawathugoda+Road+Hokandara" target="_blank" class="btn btn-primary" style="margin-top: 20px;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:0710667339" class="float-btn float-call" title="Call Now">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/94710667339" class="float-btn float-whatsapp" title="WhatsApp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Y-Nee Salon</h3>
+                <p>Enhancing your beauty with elegance and professional care. Your satisfaction is our priority.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a><br>
+                <a href="#about">About Us</a><br>
+                <a href="#services">Services</a><br>
+                <a href="#gallery">Gallery</a><br>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#services">Hair Cutting</a><br>
+                <a href="#services">Hair Coloring</a><br>
+                <a href="#services">Bridal Dressing</a><br>
+                <a href="#services">Facial Treatments</a><br>
+                <a href="#services">Makeup Services</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 239, Thalawathugoda Road, Hokandara</p>
+                <p><i class="fas fa-phone"></i> 071 066 7339</p>
+                <p><i class="fas fa-clock"></i> Open Daily: 9AM - 23:45pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Y-Nee Salon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.service-card, .gallery-item, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>'''
+
+# Save the file
+file_path = '/mnt/kimi/output/y-nee-salon-website.html'
+with open(file_path, 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print(f"✅ Website saved successfully!")
+print(f"📁 File location: {file_path}")
+print(f"📱 Features included:")
+print("   • Gold & White luxury theme")
+print("   • Fully mobile responsive")
+print("   • Smooth scrolling navigation")
+print("   • Animated service cards")
+print("   • Floating call/WhatsApp buttons")
+print("   • Contact section with working hours (9AM - 12AM)")
+print("   • Gallery section")
+print("   • Professional footer")
+ 
